@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CarItem from './carItem.jsx'
 import './flex.css'
+import { Accordion, Container } from 'react-bootstrap'
 
 class CarList extends Component {
     constructor(props) {
@@ -47,8 +48,10 @@ class CarList extends Component {
         };
     }
     render() {
+        let i = 0
         return (
-            <div className="flex-container space-evenly">
+            <Container>
+            <Accordion>
             {
                 Object.entries(this.state.carDetails).map((car, index) =>
                     <CarItem className = "flex-item" imgsrc={car[1].img}
@@ -56,10 +59,12 @@ class CarList extends Component {
                     carbrand = {car[1].brand}
                     carlocation = {car[1].location}
                     key = {index}
+                    eventKey = {i++}
                     />
                 )
             }
-            </div>
+            </Accordion>
+            </Container>
         );
     }
 }
