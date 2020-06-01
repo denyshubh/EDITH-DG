@@ -1,25 +1,31 @@
-import React, { Component } from 'react';
+import React from "react";
 import { Navbar, Nav } from 'react-bootstrap'
+const NavBar = ({ user }) => {
+  return (
+    <Navbar bg="light" expand="lg">
+    <Navbar.Brand href="/"><i><b>=EDITH</b></i></Navbar.Brand>
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="mr-auto">
+      <Nav.Link href="/cars">Cars</Nav.Link>
+      <Nav.Link href="/liked">My Collections</Nav.Link>
+          {!user && (
+            <React.Fragment>
+              <Nav.Link href="/login">Login</Nav.Link>
+              <Nav.Link href="/register">Register</Nav.Link>
+            </React.Fragment>
+          )}
+          {user && (
+          <React.Fragment>
+              <Nav.Link href="/profile">{user.name}</Nav.Link>
+              <Nav.Link href="/logout">Logout</Nav.Link>
+            </React.Fragment>
+          )}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
-              <Navbar.Brand href="#home"><i><b>=EDITH</b></i></Navbar.Brand>
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="mr-auto">
-                  <Nav.Link href="#features">Features</Nav.Link>
-                  <Nav.Link href="#pricing">Pricing</Nav.Link>
-                </Nav>
-              </Navbar.Collapse>
-            </Navbar>
-    );
-  }
-}
+  );
+};
 
-export default Header;
+export default NavBar;
